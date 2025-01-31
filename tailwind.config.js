@@ -16,9 +16,10 @@ module.exports = {
       colors: {
         primary: "#030405",
         accent: {
-          DEFAULT: "#50D001",
+          DEFAULT: "#00DF82",
           hover: "#429011",
         },
+        white: "#F1F7F7"
       },
       keyframes: {
         marquee: {

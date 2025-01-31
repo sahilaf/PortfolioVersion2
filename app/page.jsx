@@ -1,25 +1,23 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Hero from "@/components/Hero";
 import Section from "@/components/sectiontext";
 import Header from "../components/header";
-import LoadingScreen from "@/components/LoadingScreen";  // Import the LoadingScreen component
+import Model from "@/components/model";
 
 function Page() {
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    // Simulate a loading time and then hide the loading screen
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000); // Set a 3-second delay to simulate loading
+    // Ensure smooth scrolling is enabled
+    document.documentElement.style.scrollBehavior = "smooth";
   }, []);
-
   return (
     <>
-      {loading && <LoadingScreen />}  {/* Show the loading screen if loading is true */}
-      <Header className="z-10"/>
+      <Header className="z-10" />
+      
       <Hero />
+      <div className="h-screen w-full fixed left-0 top-14 z-10">
+        <Model/> {/* Pass the callback to Model */}
+      </div>
       <Section />
     </>
   );

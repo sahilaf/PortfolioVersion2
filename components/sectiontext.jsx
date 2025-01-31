@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Orbitron } from "next/font/google";
 
 
@@ -10,7 +10,9 @@ const orbitron = Orbitron({
 function Section() {
 
   return (
-    <div></div>
+    <div className="w-full h-screen absolute left-0 right-0 z-30">
+      
+    </div>
   );
 }
 
