@@ -12,11 +12,13 @@ function Page() {
   }, []);
   return (
     <>
-      <Header className="z-10" />
-      
+      <Header
+        
+      />
+
       <Hero />
       <div className="h-screen w-full fixed left-0 top-14 z-10">
-        <Model/> {/* Pass the callback to Model */}
+        <Model /> {/* Pass the callback to Model */}
       </div>
       <Section />
     </>

@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
 import { JetBrains_Mono } from "next/font/google";
-import { AnimatePresence } from 'framer-motion';
-const jetBrains_Mono = JetBrains_Mono({
+import { AnimatePresence } from "framer-motion";
+
+// Font configuration
+const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-jetbrainsMono",
 });
+
+// Social links data
 const socials = [
   { icon: <FaGithub />, path: "https://github.com/sahilaf" },
   {
@@ -17,18 +21,25 @@ const socials = [
   { icon: <FaTwitter />, path: "https://x.com/SFarib44572" },
   { icon: <FaFacebook />, path: "https://www.facebook.com/sahil.alfarib" },
 ];
+
+// Reusable Socials Component
 const Socials = ({ containerStyles, iconStyles }) => (
   <div className={containerStyles}>
     {socials.map((item, index) => (
-      <Link key={index} href={item.path} className={iconStyles}>
+      <Link
+        key={index}
+        href={item.path}
+        className={iconStyles}
+        aria-label={`Link to ${item.path}`}
+      >
         {item.icon}
       </Link>
     ))}
   </div>
 );
 
-function Header() {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
+// Scramble Text Effect
+const useScrambleText = () => {
   useEffect(() => {
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -82,73 +93,86 @@ function Header() {
       });
     };
   }, []);
-  return (
-    <>
-      <header
-        className="bg-transparent backdrop-blur-md pt-6 py-3 xl:py-4 text-white fixed top-0 left-0 right-0 z-50 border-b border-[#03624C]"
-        style={{
-          maskImage:
-            "linear-gradient(to right, transparent, black 20%, black 80%, transparent)",
-        }}
-      >
-        <div className={jetBrains_Mono.className}>
-          <div className="container mx-auto flex justify-between ">
-            <div className="w-32 pl-7 md:pl-14 xl:pl-0">
-              <Link href="/">
-                <h1 className="text-2xl md:text-3xl font-bold items-start">
-                  <span>{`{`}</span>
-                  <span
-                    className="text-accent scramble-text"
-                    data-value={"Sahil"}
-                  >
-                    Sahil
-                  </span>
-                  <span>{`]`}</span>
-                </h1>
-              </Link>
-            </div>
-            <Socials
-              containerStyles="hidden md:flex md:gap-3"
-              iconStyles="w-9 h-9 border border-accent rounded-full flex justify-center items-center text-white text-base hover:bg-accent hover:text-primary hover:transition-all duration-500"
-            />
+};
 
-            <div className="w-32 flex justify-end pr-7 md:pr-14 xl:pr-0">
+// Header Component
+function Header() {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  // Scramble text effect
+  useScrambleText();
+
+  // Toggle menu
+  const toggleMenu = useCallback(() => {
+    setMenuIsOpen((prev) => !prev);
+  }, []);
+
+  return (
+    <header>
+      <div className="bg-transparent backdrop-blur-md pt-6 py-3 xl:py-4 text-white fixed top-0 left-0 right-0 z-50 border-b border-[#03624C]"
+      style={{
+          maskImage:
+            "linear-gradient(to right, transparent, black 10%, black 80%, transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 10%, black 80%, transparent)",
+        }}>
+      <div className={jetBrainsMono.className}>
+        <div className="container mx-auto flex justify-between">
+          {/* Logo */}
+          <div className="w-32 pl-7 md:pl-14 xl:pl-0">
+            <Link href="/">
+              <h1 className="text-2xl md:text-3xl font-bold items-start">
+                <span>{`{`}</span>
+                <span className="text-accent scramble-text" data-value="Sahil">
+                  Sahil
+                </span>
+                <span>{`}`}</span>
+              </h1>
+            </Link>
+          </div>
+
+          {/* Social Links */}
+          <Socials
+            containerStyles="hidden md:flex md:gap-3"
+            iconStyles="w-9 h-9 border border-accent rounded-full flex justify-center items-center text-white text-base hover:bg-accent hover:text-primary hover:transition-all duration-500"
+          />
+
+          {/* Menu Button */}
+          <div className="w-32 flex justify-end pr-7 md:pr-14 xl:pr-0">
+            <button
+              className={`bg-accent py-[2px] px-[2px] cursor-pointer ${jetBrainsMono.className}`}
+              style={{
+                clipPath:
+                  "polygon(100% 75.75%, 90.75% 100%, 0% 100%, 0% 25.75%,10.75% 0% , 100% 0%)",
+              }}
+              onClick={toggleMenu}
+              aria-label="Toggle Menu"
+            >
               <div
-                className={`bg-accent py-[2px] px-[2px] cursor-pointer ${jetBrains_Mono.className}`}
+                className={`hover:transition-all duration-500 justify-end bg-[#000a01] hover:bg-accent hover:text-[#000a01] py-1 px-5 ${jetBrainsMono.className}`}
                 style={{
                   clipPath:
-                    "polygon(100% 75.75%, 90.75% 100%, 0% 100%, 0% 25.75%,10.75% 0% , 100% 0%)",
+                    "polygon(100% 75.75%, 90.75% 100%, 0% 100%, 0% 25.75%, 10.75% 0% , 100% 0%)",
                 }}
               >
-                <div
-                  className={`hover:transition-all duration-500 justify-end bg-[#000a01]  hover:bg-accent hover:text-[#000a01] py-1 px-5 ${jetBrains_Mono.className}`}
-                  style={{
-                    clipPath:
-                      "polygon(100% 75.75%, 90.75% 100%, 0% 100%, 0% 25.75%, 10.75% 0% , 100% 0%)",
-                  }}
-                >
-                  <AnimatePresence mode="wait">
-                    {menuIsOpen && (
-                      <>
-                        <Stairs />
-                        <Menu
-                          closeMenu={() => {
-                            setMenuIsOpen(false);
-                          }}
-                        />
-                      </>
-                    )}
-                  </AnimatePresence>
-                  <p className="font-light scramble-text" data-value={"Menu"}>
-                    Menu
-                  </p>
-                </div>
+                <AnimatePresence mode="wait">
+                  {menuIsOpen && (
+                    <>
+                      <Stairs />
+                      <Menu closeMenu={() => setMenuIsOpen(false)} />
+                    </>
+                  )}
+                </AnimatePresence>
+                <p className="font-light scramble-text" data-value="Menu">
+                  Menu
+                </p>
               </div>
-            </div>
+            </button>
           </div>
         </div>
-      </header>
-    </>
+      </div>
+      </div>
+    </header>
   );
 }
 
