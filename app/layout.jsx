@@ -1,7 +1,9 @@
 import "./globals.css";
 import { Lato } from "next/font/google";
 import Script from "next/script";
-
+import PageTransition from "../components/PageTransition";
+import StairEffect from "../components/StairEffect";
+import Header from "../components/header";
 const lato = Lato({
   weight: "400",
   subsets: ["latin"],
@@ -23,8 +25,11 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={lato.className}>
-        
+      <Header />
+      <StairEffect />
+      <PageTransition>
         {children}
+        </PageTransition>
       </body>
     </html>
   );

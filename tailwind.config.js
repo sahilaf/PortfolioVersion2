@@ -19,35 +19,46 @@ module.exports = {
           DEFAULT: "#00DF82",
           hover: "#429011",
         },
-        white: "#F1F7F7"
+        white: "#F1F7F7",
       },
       keyframes: {
         marquee: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-100%)' },
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-100%)" },
         },
         slider: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-100%)' },
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
-        marquee: 'marquee 1000s linear infinite',
-        slider: 'slider 12s linear infinite',
+        marquee: "marquee 1000s linear infinite",
+        slider: "slider 12s linear infinite",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
   plugins: [
+    require("tailwindcss-animate"),
     function ({ addUtilities }) {
       addUtilities({
-        '.text-stroke': {
-          '-webkit-text-stroke': '2px #50D001', // Adjust color as needed
+        ".text-stroke": {
+          "-webkit-text-stroke": "2px #50D001", // Adjust color as needed
         },
-        '.text-stroke-lg': {
-          '-webkit-text-stroke': '2px #ffffff',
+        ".text-stroke-lg": {
+          "-webkit-text-stroke": "2px #ffffff",
         },
-        '.text-stroke-transparent': {
-          '-webkit-text-stroke': '1px transparent',
+        ".text-stroke-transparent": {
+          "-webkit-text-stroke": "1px transparent",
         },
       });
     },
