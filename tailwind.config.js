@@ -26,9 +26,14 @@ module.exports = {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-100%)' },
         },
+        slider: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
       },
       animation: {
         marquee: 'marquee 1000s linear infinite',
+        slider: 'slider 12s linear infinite',
       },
     },
   },
