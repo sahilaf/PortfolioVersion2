@@ -337,7 +337,10 @@ function Hero() {
             </motion.button>
           </div>
         </div>
-        <div className="h-screen w-full stop"></div>
+        <div className="h-screen w-full stop">
+        
+        </div>
+        
       </div>
     </div>
   );

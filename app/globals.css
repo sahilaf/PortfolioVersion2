@@ -26,3 +26,12 @@ body {
   
 }
 
+.text-reveal span {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 0.5s ease;
+}
+
+.text-reveal.visible span {
+  transform: translateY(0);
+}
