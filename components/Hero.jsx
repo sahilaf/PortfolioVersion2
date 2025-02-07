@@ -55,6 +55,9 @@ function Hero() {
   const opacity8 = useTransform(scrollYProgress, [0.6, 0.7], [0, 1]);
   const y8 = useTransform(scrollYProgress, [0.6, 0.7], [20, 0]);
 
+  const opacity9 = useTransform(scrollYProgress, [0.6, 0.7], [0, 1]);
+  const y9 = useTransform(scrollYProgress, [0.6, 0.7], [20, 0]);
+
   return (
     <div className={oxanium.className}>
       <div className="z-0 absolute inset-0">
@@ -265,10 +268,10 @@ function Hero() {
 
       <div className={jetBrains_Mono.className}>
         <div
-          className="w-full absolute z-40 px-6 sm:px-12 md:px-20 lg:px-32"
+          className="w-full absolute z-40 md:px-40 px-5"
           ref={ref}
         >
-          <div className="rounded-2xl p-6 sm:p-10  text-left">
+          <div className="rounded-2xl text-left">
             <p className="text-lg/relaxed sm:text-2xl/relaxed md:text-3xl/relaxed font-black text-white ">
               <motion.span
                 style={{ opacity: opacity1, y: y1, display: "block" }}
@@ -292,7 +295,7 @@ function Hero() {
               </motion.span>
             </p>
           </div>
-          <div className="rounded-2xl p-6 sm:p-10  text-right mt-10">
+          <div className="rounded-2xl text-right mt-10">
             <p className="text-lg/relaxed sm:text-2xl/relaxed md:text-3xl/relaxed font-black text-white">
               <motion.span
                 style={{ opacity: opacity5, y: y5, display: "block" }}
@@ -318,29 +321,34 @@ function Hero() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative px-8 py-3 text-lg font-bold text-white bg-transparent border-2 border-accent rounded-lg shadow-lg hover:shadow-[0_0_20px_5px_rgba(0,255,204,0.6)] transition-all duration-300 ease-in-out"
-              style={{
-                background:
-                  "linear-gradient(45deg, rgba(0,255,204,0.1), rgba(0,255,204,0.05))",
-                backdropFilter: "blur(10px)",
-                WebkitBackdropFilter: "blur(10px)",
-              }}
-            >
-              <span className="relative z-10">Start</span>
-              <span
-                className="absolute inset-0 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300"
+               
+                className="bg-accent py-[2px] px-[2px] cursor-pointer z-50 font-jetbrains mt-10"
                 style={{
-                  background:
-                    "radial-gradient(circle, rgba(0,255,204,0.4), transparent 70%)",
-                }}
-              ></span>
-            </motion.button>
+                  clipPath:
+                    "polygon(100% 75.75%, 90.75% 100%, 0% 100%, 0% 25.75%,10.75% 0% , 100% 0%)",
+                
+                 opacity: opacity9, y: y9 }
+              }
+                onClick={() => setMenuOpen(true)}
+              >
+                <div
+                  className="hover:transition-all duration-500 justify-end bg-[#000a01] hover:bg-accent hover:text-black py-3 px-10 "
+                  style={{
+                    clipPath:
+                      "polygon(100% 75.75%, 90.75% 100%, 0% 100%, 0% 25.75%, 10.75% 0% , 100% 0%)",
+                  }}
+                >
+                  <p className="font-normal scramble-text" data-value="Start">
+                    Start
+                  </p>
+                </div>
+              </motion.button>
+              
           </div>
         </div>
         <div className="h-screen w-full stop">
         
         </div>
-        
       </div>
     </div>
   );

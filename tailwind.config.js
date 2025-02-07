@@ -1,3 +1,5 @@
+const { Oxanium } = require('next/font/google');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -13,6 +15,10 @@ module.exports = {
       xl: "1200px",
     },
     extend: {
+      fontFamily: {
+        jetbrains: ["JetBrains Mono", "monospace"],
+        oxanium: ["Oxanium", "sans-serif"],
+      },
       colors: {
         primary: "#030405",
         accent: {

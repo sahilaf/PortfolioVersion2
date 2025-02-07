@@ -104,18 +104,14 @@ function Header() {
   return (
     <header>
       <div
-        className="bg-transparent backdrop-blur-md pt-6 py-3 xl:py-4 text-white fixed top-0 left-0 right-0 z-50 border-b border-[#03624C]"
+        className="bg-transparent backdrop-blur-md pt-6 py-3 xl:py-4 text-white fixed top-0 left-0 right-0 z-50 border-b border-[#03624C] flex justify-between px-5 font-jetbrains md:px-40"
         style={{
-          maskImage:
-            "linear-gradient(to right, transparent, black 10%, black 80%, transparent)",
           WebkitMaskImage:
-            "linear-gradient(to right, transparent, black 10%, black 80%, transparent)",
+            "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
         }}
       >
-        <div className={jetBrainsMono.className}>
-          <div className="container mx-auto flex justify-between">
             {/* Logo */}
-            <div className="w-32 pl-7 md:pl-14 xl:pl-0">
+            <div className="w-32">
               <Link href="/">
                 <h1 className="text-2xl md:text-3xl font-bold items-start">
                   <span>{`{`}</span>
@@ -137,9 +133,9 @@ function Header() {
             />
 
             {/* Menu Button */}
-            <div className="w-32 flex justify-end pr-7 md:pr-14 xl:pr-0">
+            <div className="w-32 flex justify-end">
               <button
-                className={`bg-accent py-[2px] px-[2px] cursor-pointer ${jetBrainsMono.className}`}
+                className={`bg-accent py-[2px] px-[2px] cursor-pointer z-50 ${jetBrainsMono.className}`}
                 style={{
                   clipPath:
                     "polygon(100% 75.75%, 90.75% 100%, 0% 100%, 0% 25.75%,10.75% 0% , 100% 0%)",
@@ -160,8 +156,6 @@ function Header() {
               </button>
             </div>
           </div>
-        </div>
-      </div>
 
       <Menu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
     </header>

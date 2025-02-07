@@ -85,7 +85,6 @@ const blogPosts = [
     image:
       "https://images.unsplash.com/photo-1454117096348-e4abbeba002c?auto=format&fit=crop&q=80&w=2602&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
-  
 ];
 const TextReveal = ({ text }) => {
   const ref = useRef(null);
@@ -149,21 +148,33 @@ function Section() {
   // Video Animation
   const animateVideo = useCallback(() => {
     if (!videoRef.current) return;
-    const videoSection = videoRef.current.closest("section");
-    const { bottom } = videoSection.getBoundingClientRect();
 
-    const scale = Math.min(
-      Math.max(1 - (bottom - window.innerHeight) * 0.0005, 0.2),
-      1
-    );
+    const videoSection = videoRef.current.closest("section");
+    if (!videoSection) return;
+
+    const { top, bottom } = videoSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // 🌟 Improved Scaling (Keeps Video from Shrinking Too Much)
+    const scale = Math.max(
+      0.85,
+      1 - Math.max((bottom - windowHeight) * 0.0003, 0)
+    ); // Limits min scale to 0.85
     videoRef.current.style.transform = `scale(${scale})`;
 
-    const textTrans = Math.max(bottom - window.innerHeight, 0);
+    // 🌟 Improved Text Translation (Smoother)
+    const textTrans = Math.max((bottom - windowHeight) * 0.6, 0);
     const headerLeft = videoSection.querySelector(".text__header__left");
     const headerRight = videoSection.querySelector(".text__header__right");
+
     if (headerLeft) headerLeft.style.transform = `translateX(${-textTrans}px)`;
     if (headerRight) headerRight.style.transform = `translateX(${textTrans}px)`;
   }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", animateVideo);
+    return () => window.removeEventListener("scroll", animateVideo);
+  }, [animateVideo]);
 
   // Projects Animation
   const animateProjects = useCallback(() => {
@@ -242,84 +253,83 @@ function Section() {
   }, [projectCurrentX, projectTargetX]);
 
   return (
-    <div className="h-screen w-full backdrop-blur-md z-40 relative line__container overflow-hidden bg-primary">
+    <div className="h-screen w-full backdrop-blur-md z-40 relative line__container overflow-hidden bg-primary font-jetbrains">
       <div className="separator" />
       <div className="separator" />
       <div className="separator" />
       <main ref={mainRef}>
-      <div className="scroll__container">
+        <div className="scroll__container">
+          {/* Video Section */}
+          <section id="video" ref={videoRef}>
+            <div className="shim" />
+            <div className="video__sticky">
+              <video
+                className="main__video"
+                autoPlay
+                muted
+                loop
+                playsInline
+                src="https://framerusercontent.com/modules/assets/BcIElVBzSD9P1ht5PhehnVyzTA~0iRDOKjSaNyoXJfsXAcSsdeEYSbJ8aAp3MvS5ts7LL0.mp4"
+              />
+              <div className="video__text__overlay">
+                <h2 className="text__header__left font-oxanium">SHOW</h2>
+                <h2 className="text__header__right font-oxanium">CASE</h2>
+              </div>
+            </div>
+          </section>
 
-      {/* Video Section */}
-      <section id="video" ref={videoRef}>
-        <div className="shim" />
-        <div className="video__sticky">
-          <video
-            className="main__video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            src="https://framerusercontent.com/modules/assets/BcIElVBzSD9P1ht5PhehnVyzTA~0iRDOKjSaNyoXJfsXAcSsdeEYSbJ8aAp3MvS5ts7LL0.mp4"
-          />
-          <div className="video__text__overlay">
-            <h2 className="text__header__left">SHOW</h2>
-            <h2 className="text__header__right">CASE</h2>
-          </div>
-        </div>
-      </section>
+          {/* Projects Section */}
+          <section id="projects">
+            <div className="projects__sticky" ref={projectsStickyRef}>
+              <div className="slider__container">
+                <div className="projects__slider" ref={projectSliderRef}>
+                  {projects.map((project, i) => (
+                    <div key={i} className={`project ${project.pos}`}>
+                        <div className="image__container">
+                          <img
+                            className="project__image"
+                            src={project.image}
+                            alt={project.name}
+                          />
+                        </div>
+                        <div className="project__details">
+                          <p>{project.name}</p>
+                          <p>{project.type}</p>
+                        </div>
+                      </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
 
-      {/* Projects Section */}
-      <section id="projects">
-        <div className="projects__sticky" ref={projectsStickyRef}>
-          <div className="slider__container">
-            <div className="projects__slider" ref={projectSliderRef}>
-              {projects.map((project, i) => (
-                <div key={i} className={`project ${project.pos}`}>
-                  <div className="image__container">
+          {/*Blog section */}
+          <section id="blog" ref={blogSectionRef}>
+            <div className="blog__hero font-oxanium">
+              <TextReveal text="BLOGS" />
+            </div>
+            {blogPosts.map((post, i) => (
+              <div key={i} className="blog__post">
+                <div className="post">
+                  <div className="post__image__container">
                     <img
-                      className="project__image"
-                      src={project.image}
-                      alt={project.name}
+                      className="blog__post__img"
+                      src={post.image}
+                      alt={post.title}
                     />
                   </div>
-                  <div className="project__details">
-                    <p>{project.name}</p>
-                    <p>{project.type}</p>
+                  <div className="post__details">
+                    <p>{post.title}</p>
+                    <p>{post.time}</p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      
-      {/*Blog section */}
-      <section id="blog" ref={blogSectionRef}>
-        <div className="blog__hero">
-          <TextReveal text="BLOGS" />
-        </div>
-        {blogPosts.map((post, i) => (
-          <div key={i} className="blog__post">
-            <div className="post">
-              <div className="post__image__container">
-                <img
-                  className="blog__post__img"
-                  src={post.image}
-                  alt={post.title}
-                />
               </div>
-              <div className="post__details">
-                <p>{post.title}</p>
-                <p>{post.time}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </section>
-      </div>
+            ))}
+          </section>
+          {/*Skills */}
+          <div className="h-screen w-full"></div>
+        </div>
       </main>
-      
     </div>
   );
 }
