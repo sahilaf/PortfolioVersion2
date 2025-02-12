@@ -164,7 +164,7 @@ function Menu ({ isOpen, onClose }) {
               </div>
               <div>
                 <Link
-                  href="/projects"
+                  href="/project"
                   onClick={onClose}
                   className="hover:text-accent transition-all"
                 >
