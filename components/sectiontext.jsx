@@ -53,7 +53,7 @@ const projects = [
     type: "WEB",
     pos: "start",
     image:
-      "https://private-user-images.githubusercontent.com/117147361/336148571-594d09b9-5d37-4b40-a217-b21a6f84ad7c.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDY1NzUyODgsIm5iZiI6MTc0NjU3NDk4OCwicGF0aCI6Ii8xMTcxNDczNjEvMzM2MTQ4NTcxLTU5NGQwOWI5LTVkMzctNGI0MC1hMjE3LWIyMWE2Zjg0YWQ3Yy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNTA2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDUwNlQyMzQzMDhaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iYTZkYzUyZDcwZWI3NGI5ZDAyMGYyY2NkNGJkYjUzMGJiOGQ0ZWM0YjVjM2UzMDdjZjhhMGQxNGY0NDVkNDU4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.JWCJ4j48LkXLKsY7rCxnJdhiAfjt-FECMOJU62-Uv04",
+      "./assets/ScholarSphere.PNG",
   },
   {
     name: "SkyVoyager",
@@ -68,19 +68,19 @@ const blogPosts = [
     title: "Decentralized Intelligence: How Blockchain is Transforming AI Collaboration",
     time: "3 MIN",
     image:
-      "./assets/Blog3.PNG"
+      "./assets/blog3.PNG"
     },
   {
     title: "Autonomous Agents on the Ledger: How AI and Blockchain Are Powering the Next Internet",
     time: "4 MIN",
     image:
-      "./assets/Blog1.PNG"
+      "./assets/blog1.PNG"
     },
   {
     title: "Trustless AI: Using Blockchain to Verify AI Decisions in Critical Systems",
     time: "5 MIN",
     image:
-      "./assets/Blog2.PNG",
+      "./assets/blog2.PNG",
     },
 ];
 const TextReveal = ({ text }) => {
