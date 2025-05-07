@@ -11,14 +11,14 @@ const projects = [
     type: "WEB",
     pos: "start",
     image:
-      "https://github.com/sahilaf/Data/blob/main/MacBook%20%2313.jpg?raw=true",
+      "./assets/fairbasket.jpg",
   },
   {
     name: "Iphone 15 pro website clone",
     type: "WEB",
     pos: "mid",
     image:
-      "https://github.com/sahilaf/Data/blob/main/Apple%20clone.PNG?raw=true",
+      "./assets/Apple_clone.PNG",
   },
   {
     name: "Ask in pdf",
@@ -46,7 +46,7 @@ const projects = [
     type: "WEB",
     pos: "mid",
     image:
-      "https://github.com/sahilaf/Data/blob/main/Portfolio.PNG?raw=true",
+      "./assets/Portfolio.PNG",
   },
   {
     name: "ScholarSphare",
@@ -68,19 +68,19 @@ const blogPosts = [
     title: "Decentralized Intelligence: How Blockchain is Transforming AI Collaboration",
     time: "3 MIN",
     image:
-      "https://github.com/sahilaf/Data/blob/main/blog3.PNG?raw=true"
+      "./assets/Blog3.PNG"
     },
   {
     title: "Autonomous Agents on the Ledger: How AI and Blockchain Are Powering the Next Internet",
     time: "4 MIN",
     image:
-      "https://github.com/sahilaf/Data/blob/main/Blog1.PNG?raw=true"
+      "./assets/Blog1.PNG"
     },
   {
     title: "Trustless AI: Using Blockchain to Verify AI Decisions in Critical Systems",
     time: "5 MIN",
     image:
-      "https://github.com/sahilaf/Data/blob/main/blog4.PNG?raw=true"
+      "./assets/Blog2.PNG",
     },
 ];
 const TextReveal = ({ text }) => {

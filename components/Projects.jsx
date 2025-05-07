@@ -31,63 +31,136 @@ const Projects = () => {
     all: [
       {
         title: "FairBasket",
-        description: "Empowering Fair Grocery Commerce",
+        description: "",
         image:
-          "./fairbasket.jpg",
+          "./assets/fairbasket.jpg",
         type: "Web Development",
         url: "https://github.com/sahilaf/bugsquashers",
       },
       {
-        title: "Project 2",
-        description: "Description for Project 2",
+        title: "Iphone 15 pro website clone",
+        description: "",
         image:
-          "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2564",
-        type: "Mobile Development",
-        url: "/projects/project-2",
+          "./assets/Apple_clone.PNG",
+        type: "Web Development",
+        url: "https://github.com/sahilaf/Apple",
       },
       {
-        title: "Project 3",
-        description: "Description for Project 3",
+        title: "SkyVoyager",
+        description: "",
         image:
-          "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?auto=format&fit=crop&q=80&w=2487",
-        type: "UI/UX Design",
-        url: "/projects/project-3",
+          "./assets/SkyVoager.PNG",
+        type: "Web Development",
+        url: "https://github.com/sahilaf/SkyVoyager",
       },
+      {
+        title: "ScholarSphare",
+        description: "",
+        image:
+          "./assets/scholarsphare.PNG",
+        type: "Web Development",
+        url: "https://github.com/sahilaf/Scholarsphare",
+      },
+      {
+        title: "Dr.Shawon Portfolio",
+        description: "",
+        image:
+          "./assets/Portfolio.PNG",
+        type: "Web Development",
+        url: "https://github.com/sahilaf/Site",
+      },
+      {
+        title: "Instagram content agent",
+        description: "",
+        image:
+          "https://github.com/sahilaf/Instagram-content-agent/raw/main/docs/Content_agent_flow.png",
+        type: "Ai Agent",
+        url: "https://github.com/sahilaf/Instagram-content-agent",
+      },
+      {
+        title: "Chat with websites",
+        description: "",
+        image:
+          "https://github.com/sahilaf/Chat_with_websites/blob/main/docs/HTML-rag-diagram.jpg?raw=true",
+        type: "Ai Agent",
+        url: "https://github.com/sahilaf/Chat_with_websites",
+      },
+      {
+        title: "Ask in pdf",
+        description: "",
+        image:
+          "https://github.com/sahilaf/Ask_in_pdf/raw/main/docs/PDF-LangChain.jpg",
+        type: "Ai Agent",
+        url: "https://github.com/sahilaf/Chat_with_websites",
+      },
+      
     ],
     web: [
       {
-        title: "Web Project 1",
-        description: "Web Development Project 1",
+        title: "FairBasket",
+        description: "",
         image:
-          "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&q=80&w=2370",
+          "./assets/fairbasket.jpg",
         type: "Web Development",
-        url: "/projects/web-project-1",
+        url: "https://github.com/sahilaf/bugsquashers",
       },
       {
-        title: "Web Project 2",
-        description: "Web Development Project 2",
+        title: "Iphone 15 pro website clone",
+        description: "",
         image:
-          "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2564",
+          "./assets/Apple_clone.PNG",
         type: "Web Development",
-        url: "/projects/web-project-2",
+        url: "https://github.com/sahilaf/Apple",
+      },
+      {
+        title: "SkyVoyager",
+        description: "",
+        image:
+          "./assets/SkyVoager.PNG",
+        type: "Web Development",
+        url: "https://github.com/sahilaf/SkyVoyager",
+      },
+      {
+        title: "ScholarSphare",
+        description: "",
+        image:
+          "./assets/scholarsphare.PNG",
+        type: "Web Development",
+        url: "https://github.com/sahilaf/Scholarsphare",
+      },
+      {
+        title: "Dr.Shawon Portfolio",
+        description: "",
+        image:
+          "./assets/Portfolio.PNG",
+        type: "Web Development",
+        url: "https://github.com/sahilaf/Site",
       },
     ],
     agents: [
       {
-        title: "Mobile App 1",
-        description: "Mobile Development Project 1",
+        title: "Instagram content agent",
+        description: "",
         image:
-          "https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&q=80&w=2487",
-        type: "Mobile Development",
-        url: "/projects/mobile-app-1",
+          "https://github.com/sahilaf/Instagram-content-agent/raw/main/docs/Content_agent_flow.png",
+        type: "Ai Agent",
+        url: "https://github.com/sahilaf/Instagram-content-agent",
       },
       {
-        title: "Mobile App 2",
-        description: "Mobile Development Project 2",
+        title: "Chat with websites",
+        description: "",
         image:
-          "https://images.unsplash.com/photo-1561998338-13ad7883b20f?auto=format&fit=crop&q=80&w=2487",
-        type: "Mobile Development",
-        url: "/projects/mobile-app-2",
+          "https://github.com/sahilaf/Chat_with_websites/blob/main/docs/HTML-rag-diagram.jpg?raw=true",
+        type: "Ai Agent",
+        url: "https://github.com/sahilaf/Chat_with_websites",
+      },
+      {
+        title: "Ask in pdf",
+        description: "",
+        image:
+          "https://github.com/sahilaf/Ask_in_pdf/raw/main/docs/PDF-LangChain.jpg",
+        type: "Ai Agent",
+        url: "https://github.com/sahilaf/Chat_with_websites",
       },
     ],
   };
