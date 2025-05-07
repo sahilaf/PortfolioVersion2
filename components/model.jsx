@@ -10,7 +10,7 @@ import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPa
 import { FilmPass } from "three/examples/jsm/postprocessing/FilmPass";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 gsap.registerPlugin(ScrollTrigger);
 
 const FOV = 39.6;
@@ -85,6 +85,9 @@ export default function Model({ onModelLoaded = () => {} }) {
 
     // Load Model
     const loader = new GLTFLoader();
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+    loader.setDRACOLoader(dracoLoader);
     let carModel, mixer;
     loader.load(
       "/assets/Model.glb",
