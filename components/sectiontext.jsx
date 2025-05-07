@@ -53,7 +53,7 @@ const projects = [
     type: "WEB",
     pos: "start",
     image:
-      "./assets/scholarsphere.PNG",
+      "./assets/scholarsphare.PNG",
   },
   {
     name: "SkyVoyager",
