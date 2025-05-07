@@ -1,9 +1,7 @@
+// app/layout.js
 import "./globals.css";
 import { Lato } from "next/font/google";
-import Script from "next/script";
-import PageTransition from "../components/PageTransition";
-import StairEffect from "../components/StairEffect";
-import Header from "../components/header";
+
 const lato = Lato({
   weight: "400",
   subsets: ["latin"],
@@ -18,18 +16,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <Script
-          src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
-          strategy="beforeInteractive"
-        />
-      </head>
+      <head />
       <body className={lato.className}>
-      <Header />
-      <StairEffect />
-      <PageTransition>
         {children}
-        </PageTransition>
       </body>
     </html>
   );

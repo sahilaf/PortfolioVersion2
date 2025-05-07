@@ -1,11 +1,14 @@
+// app/page.js
 "use client";
+
 import React, { useEffect, useRef } from "react";
 import Hero from "@/components/Hero";
 import Section from "@/components/sectiontext";
-import Model from "@/components/model";
 
+import Header from "@/components/header"
+import Preloader from "@/components/Preloader";
 function Page() {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef(null);// Get the current pathname to force remount of Model
 
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
@@ -24,26 +27,35 @@ function Page() {
         }
       },
       {
-        root: null, // Use the viewport instead of a custom scroll container
-        threshold: 0.3, // Trigger when 50% of the section is visible
+        root: null,
+        threshold: 0.3,
       }
     );
 
     observer.observe(section);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      console.log("Page component unmounted");
+    };
   }, []);
 
   return (
     <div className="relative">
+      <Preloader/> {/* Add Preloader here */}
+      <Header />
       <Hero />
-      <div className="h-screen w-full fixed left-0 top-14 z-10 overflow-hidden pointer-events-none">
-        <Model />
-      </div>
-      {/* Attach ref directly to the Section wrapper */}
+      {/* 
+        Using the pathname as key forces React to fully remount the Model 
+        when the route changes. This ensures cleanup happens and no duplicate 
+        instances persist.
+      */}
+      
+
       <div ref={sectionRef}>
         <Section />
       </div>
+      
     </div>
   );
 }

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
-import { IoClose } from "react-icons/io5";
 import { JetBrains_Mono } from "next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -154,13 +153,6 @@ function Menu ({ isOpen, onClose }) {
                 </Link>
               </div>
               <div>
-                <Link
-                  href="/about"
-                  onClick={onClose}
-                  className="hover:text-accent transition-all"
-                >
-                  About
-                </Link>
               </div>
               <div>
                 <Link

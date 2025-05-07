@@ -121,7 +121,7 @@ function Header() {
                   >
                     Sahil
                   </span>
-                  <span>{`}`}</span>
+                  <span>{`]`}</span>
                 </h1>
               </Link>
             </div>

@@ -4,7 +4,7 @@ import { Oxanium, JetBrains_Mono } from "next/font/google";
 import { WavyBackground } from "./ui/wavy-background";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-
+import Model from "@/components/model";
 const oxanium = Oxanium({
   weight: ["400", "800"],
   subsets: ["latin"],
@@ -22,15 +22,17 @@ function Hero() {
   });
 
   const text = [
-    "A passionate MERN stack developer with",
+    "A passionate MERN stack developer with  ",
     "a strong foundation in AI & Machine Learning.",
-    "I love building futuristic and interactive web",
+    "I love building futuristic and interactive",
     "applications that push the boundaries of innovation.",
-    " Set course for adventure,",
-    "A journey through space and possibilities.",
-    "As we travel, you’ll get to know",
-    "the man behind the mask"
+    "With 2 years of experience in development,",
+    "I’m on a mission to create impactful solutions.",
+    "Focusing on engineering solutions that make a difference,",
+    "I aim to solve real-world problems and turn ",
+    "cutting-edge tech into profitable ventures.",
   ];
+
   const opacity1 = useTransform(scrollYProgress, [0, 0.05], [0, 1]);
   const y1 = useTransform(scrollYProgress, [0, 0.05], [20, 0]);
 
@@ -63,9 +65,11 @@ function Hero() {
       <div className="z-0 absolute inset-0">
         <WavyBackground className="overflow-hidden"></WavyBackground>
       </div>
-
-      <div className="h-screen overflow-hidden flex items-center justify-center mt-0 md:mt-[0px] ">
-        <div className="flex whitespace-nowrap animate-marquee">
+      <div className="h-screen w-full fixed left-0 top-14 z-10 overflow-hidden pointer-events-none">
+        <Model />
+      </div>
+      <div className="h-screen overflow-hidden flex items-center justify-center mt-0 md:mt-0 ">
+        <div className="flex whitespace-nowrap animate-marquee mt-44 md:mt-64">
           <h1 className="text-[7rem] md:text-[12rem] font-black ml-10 text-[#ffffff36] text-stroke-lg">
             Hello I'm{" "}
           </h1>
@@ -267,10 +271,7 @@ function Hero() {
       <div className="h-[200vh] w-full overflow-x-hidden fixed left-0 top-14 bg-transparent z-40"></div>
 
       <div className={jetBrains_Mono.className}>
-        <div
-          className="w-full absolute z-40 md:px-40 px-5"
-          ref={ref}
-        >
+        <div className="w-full absolute z-40 md:px-40 px-5" ref={ref}>
           <div className="rounded-2xl text-left">
             <p className="text-lg/relaxed sm:text-2xl/relaxed md:text-3xl/relaxed font-black text-white ">
               <motion.span
@@ -317,38 +318,15 @@ function Hero() {
               >
                 {text[7]}
               </motion.span>
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-               
-                className="bg-accent py-[2px] px-[2px] cursor-pointer z-50 font-jetbrains mt-10"
-                style={{
-                  clipPath:
-                    "polygon(100% 75.75%, 90.75% 100%, 0% 100%, 0% 25.75%,10.75% 0% , 100% 0%)",
-                
-                 opacity: opacity9, y: y9 }
-              }
-                onClick={() => setMenuOpen(true)}
+              <motion.span
+                style={{ opacity: opacity8, y: y8, display: "block" }}
               >
-                <div
-                  className="hover:transition-all duration-500 justify-end bg-[#000a01] hover:bg-accent hover:text-black py-3 px-10 "
-                  style={{
-                    clipPath:
-                      "polygon(100% 75.75%, 90.75% 100%, 0% 100%, 0% 25.75%, 10.75% 0% , 100% 0%)",
-                  }}
-                >
-                  <p className="font-normal scramble-text" data-value="Start">
-                    Start
-                  </p>
-                </div>
-              </motion.button>
-              
+                {text[8]}
+              </motion.span>
+            </p>
           </div>
         </div>
-        <div className="h-screen w-full stop">
-        
-        </div>
+        <div className="h-screen w-full "></div>
       </div>
     </div>
   );

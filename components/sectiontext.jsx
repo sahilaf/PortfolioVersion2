@@ -1,90 +1,87 @@
 "use client"; // Ensure this component is client-side only
 import { React, useEffect, useRef, useState, useCallback } from "react";
 import { lerp } from "./blog/utils";
-import { Orbitron } from "next/font/google";
 import "./styles.css";
-const orbitron = Orbitron({
-  weight: "400",
-  subsets: ["latin"],
-});
+import Footer from "./Footer";
+import Aboutme from "./Aboutme";
 
 const projects = [
   {
-    name: "PROJECT ONE",
-    type: "WEB DESIGN",
+    name: "FairBasket",
+    type: "WEB",
     pos: "start",
     image:
-      "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&q=80&w=2370&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://github.com/sahilaf/Data/blob/main/MacBook%20%2313.jpg?raw=true",
   },
   {
-    name: "PROJECT 2",
-    type: "GRAPHIC DESIGN",
+    name: "Iphone 15 pro website clone",
+    type: "WEB",
     pos: "mid",
     image:
-      "https://images.unsplash.com/reserve/aOcWqRTfQ12uwr3wWevA_14401305508_804b300054_o.jpg?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2952&q=80",
+      "https://github.com/sahilaf/Data/blob/main/Apple%20clone.PNG?raw=true",
   },
   {
-    name: "PROJECT 3",
-    type: "TYPE DESIGN",
+    name: "Ask in pdf",
+    type: "RAG",
     pos: "end",
     image:
-      "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?auto=format&fit=crop&q=80&w=2487&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://github.com/sahilaf/Ask_in_pdf/raw/main/docs/PDF-LangChain.jpg",
   },
   {
-    name: "PROJECT 4",
-    type: "WEB DESIGN",
+    name: "Chat with websites",
+    type: "AI AGENT",
     pos: "mid",
     image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2564&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://github.com/sahilaf/Chat_with_websites/blob/main/docs/HTML-rag-diagram.jpg?raw=true",
   },
   {
-    name: "PROJECT 5",
-    type: "WEB DESIGN",
+    name: "Instagram content agent",
+    type: "AI AGENT",
     pos: "end",
     image:
-      "https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&q=80&w=2487&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://github.com/sahilaf/Instagram-content-agent/raw/main/docs/Content_agent_flow.png",
   },
   {
-    name: "PROJECT 6",
-    type: "GRAPHIC DESIGN",
+    name: "Dr.Shawon Portfolio",
+    type: "WEB",
     pos: "mid",
     image:
-      "https://images.unsplash.com/photo-1561998338-13ad7883b20f?auto=format&fit=crop&q=80&w=2487&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://github.com/sahilaf/Data/blob/main/Portfolio.PNG?raw=true",
   },
   {
-    name: "PROJECT 7",
-    type: "WEB DESIGN",
+    name: "ScholarSphare",
+    type: "WEB",
     pos: "start",
     image:
-      "https://images.unsplash.com/photo-1454117096348-e4abbeba002c?auto=format&fit=crop&q=80&w=2602&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://private-user-images.githubusercontent.com/117147361/336148571-594d09b9-5d37-4b40-a217-b21a6f84ad7c.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDY1NzUyODgsIm5iZiI6MTc0NjU3NDk4OCwicGF0aCI6Ii8xMTcxNDczNjEvMzM2MTQ4NTcxLTU5NGQwOWI5LTVkMzctNGI0MC1hMjE3LWIyMWE2Zjg0YWQ3Yy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNTA2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDUwNlQyMzQzMDhaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iYTZkYzUyZDcwZWI3NGI5ZDAyMGYyY2NkNGJkYjUzMGJiOGQ0ZWM0YjVjM2UzMDdjZjhhMGQxNGY0NDVkNDU4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.JWCJ4j48LkXLKsY7rCxnJdhiAfjt-FECMOJU62-Uv04",
   },
   {
-    name: "PROJECT 8",
-    type: "TYPE DESIGN",
+    name: "SkyVoyager",
+    type: "WEB",
     pos: "end",
     image:
-      "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&q=80&w=2574&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://github.com/sahilaf/Data/blob/main/SkyVoager.PNG?raw=true",
   },
 ];
 const blogPosts = [
   {
-    title: "BLOG POST ONE",
+    title: "Decentralized Intelligence: How Blockchain is Transforming AI Collaboration",
     time: "3 MIN",
     image:
-      "https://images.unsplash.com/photo-1561998338-13ad7883b20f?auto=format&fit=crop&q=80&w=2487&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
+      "https://github.com/sahilaf/Data/blob/main/blog3.PNG?raw=true"
+    },
   {
-    title: "BLOG POST TWO",
+    title: "Autonomous Agents on the Ledger: How AI and Blockchain Are Powering the Next Internet",
     time: "4 MIN",
     image:
-      "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&q=80&w=2370&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
+      "https://github.com/sahilaf/Data/blob/main/Blog1.PNG?raw=true"
+    },
   {
-    title: "BLOG POST THREE",
+    title: "Trustless AI: Using Blockchain to Verify AI Decisions in Critical Systems",
     time: "5 MIN",
     image:
-      "https://images.unsplash.com/photo-1454117096348-e4abbeba002c?auto=format&fit=crop&q=80&w=2602&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
+      "https://github.com/sahilaf/Data/blob/main/blog4.PNG?raw=true"
+    },
 ];
 const TextReveal = ({ text }) => {
   const ref = useRef(null);
@@ -253,12 +250,14 @@ function Section() {
   }, [projectCurrentX, projectTargetX]);
 
   return (
-    <div className="h-screen w-full backdrop-blur-md z-40 relative line__container overflow-hidden bg-primary font-jetbrains">
+    <div className="h-screen w-full backdrop-blur-md z-40 relative line__container overflow-hidden bg-transparent font-jetbrains">
+      
       <div className="separator" />
       <div className="separator" />
       <div className="separator" />
       <main ref={mainRef}>
         <div className="scroll__container">
+          
           {/* Video Section */}
           <section id="video" ref={videoRef}>
             <div className="shim" />
@@ -269,7 +268,7 @@ function Section() {
                 muted
                 loop
                 playsInline
-                src="https://framerusercontent.com/modules/assets/BcIElVBzSD9P1ht5PhehnVyzTA~0iRDOKjSaNyoXJfsXAcSsdeEYSbJ8aAp3MvS5ts7LL0.mp4"
+                src="./void.mov"
               />
               <div className="video__text__overlay">
                 <h2 className="text__header__left font-oxanium">SHOW</h2>
@@ -305,7 +304,7 @@ function Section() {
 
           {/*Blog section */}
           <section id="blog" ref={blogSectionRef}>
-            <div className="blog__hero font-oxanium">
+            <div className="blog__hero font-oxanium stop">
               <TextReveal text="BLOGS" />
             </div>
             {blogPosts.map((post, i) => (
@@ -325,11 +324,13 @@ function Section() {
                 </div>
               </div>
             ))}
+            
           </section>
-          {/*Skills */}
-          <div className="h-screen w-full"></div>
+          <Aboutme/>
+          <Footer/>
         </div>
       </main>
+      
     </div>
   );
 }

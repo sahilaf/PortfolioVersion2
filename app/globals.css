@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
   --background: #ffffff;
   --foreground: #030405;
@@ -35,4 +34,8 @@ body {
 .text-reveal.visible span {
   transform: translateY(0);
 }
+
+
+
+@layer base {}
 

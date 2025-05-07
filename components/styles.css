@@ -221,9 +221,7 @@ section{
     position: relative;
     width: 50%;
     padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.057);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(32, 32, 32, 0.904);
     will-change: transform;
 }
 
@@ -306,3 +304,5 @@ section{
     background: white;
     height: 10%;
 }
+
+
